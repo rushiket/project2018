@@ -73,7 +73,7 @@
           <address>
          
           <p>
-          Name        : A P SHAH INSTITUTE OF TECHNOLOGY <br>
+          College     : A P SHAH INSTITUTE OF TECHNOLOGY <br>
           University  : Mumbai <br>
           Batch       : 2017-18 <br>
           Dept        : Computer Engineering <br>

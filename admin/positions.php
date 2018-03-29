@@ -16,7 +16,7 @@
 	// inserting sql query
 	if (isset($_POST['Submit']))
 	{
-
+$newPosition = $_POST['position'];
 	$sql = mysql_query( "INSERT INTO tbPositions(position_name) VALUES ('$newPosition')" )
 	        or die("Could not insert position at the moment". mysql_error() );
 
@@ -95,11 +95,12 @@
             <li><a href="manage-admins.php">Manage Admin</a></li>
             <li><a href="positions.php">Manage Positions</a></li>
             <li><a href="candidates.php">Manage Candidates</a></li>
+			<li><a href="vote.php">Vote</a></li>
             <li><a href="refresh.php">Results</a></li>
           </ul>
         </li>
         
-        <li><a href="http://localhost/online_voting/index.php">Voter Panel</a></li>
+        <li><a href="http://localhost/project/index.php">Voter Panel</a></li>
         <li><a href="logout.php">Logout</a></li>
 
       </ul>

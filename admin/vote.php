@@ -1,18 +1,24 @@
 <?php
-  require('connection.php');
+  require('../connection.php');
 
   session_start();
   
-  if(empty($_SESSION['member_id'])){
-    header("location:access-denied.php");
-  }
+  if(empty($_SESSION['admin_id'])){
+      header("location:access-denied.php");
+    } 
 ?>
-
 <?php
     
     $positions=mysql_query("SELECT * FROM tbPositions")
     or die("There are no records to display ... \n" . mysql_error()); 
   ?>
+  
+  <?php
+    
+    $location=mysql_query("SELECT * FROM location")
+    or die("There are no records to display ... \n" . mysql_error()); 
+  ?>
+  
   <?php
     
      if (isset($_POST['Submit']))
@@ -29,10 +35,6 @@
      // do something
   
 ?>
-
-
-
-
 <!DOCTYPE html>
 
 <html>
@@ -81,19 +83,30 @@
 </div>
 <div class="wrapper row1">
   <header id="header" class="hoc clear"> 
-    <!-- ################################################################################################ -->
+    
     <div id="logo" class="fl_left">
       <h1><a href="index.html">ONLINE VOTING</a></h1>
     </div>
-    <!-- ################################################################################################ -->
+    
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="voter.php">Home</a></li>
+        <li class="active"><a href="candidates.php">Home</a></li>
+        <li><a class="drop" href="#">Admin Panel Pages</a>
+          <ul>
+            <li><a href="manage-admins.php">Manage Admin</a></li>
+            <li><a href="positions.php">Manage Positions</a></li>
+            <li><a href="candidates.php">Manage Candidates</a></li>
+			<li><a href="vote.php">Vote</a></li>
+            <li><a href="refresh.php">Results</a></li>
+          </ul>
+        </li>
         
+        <li><a href="http://localhost/project/index.php">Voter Panel</a></li>
         <li><a href="logout.php">Logout</a></li>
+
       </ul>
     </nav>
-    <!-- ################################################################################################ -->
+    
   </header>
 </div>
 
@@ -112,16 +125,31 @@
             <tr>
                 <td bgcolor="#5D7B9D" >Choose Position</td>
                 <td bgcolor="#5D7B9D" style="color:#000000"; ><SELECT NAME="position" id="position" onclick="getPosition(this.value)">
-                <OPTION  VALUE="select">select
+               
                 <?php 
                   //loop through all table rows
                   while ($row=mysql_fetch_array($positions)){
                     echo "<OPTION VALUE=$row[position_name]>$row[position_name]"; 
                   }
                 ?>
+               </td>
+                
+            </tr>
+			
+			  <tr>
+                <td bgcolor="#5D7B9D" >Choose State</td>
+                <td bgcolor="#5D7B9D" style="color:#000000"; ><SELECT NAME="state" id="state" onclick="getPosition(this.value)">
+                <OPTION  VALUE="select">select
+                <?php 
+                  //loop through all table rows
+                  while ($row=mysql_fetch_array($location)){
+                    echo "<OPTION VALUE=$row[state]>$row[state]"; 
+                  }
+                ?>
                 </SELECT></td>
                 <td bgcolor="#5D7B9D" ><input style="color:#ff0000";  type="submit" name="Submit" value="See Candidates" /></td>
             </tr>
+			
             <tr>
                
             </tr>
@@ -131,6 +159,7 @@
             <form>
             <tr>
                 <th>Candidates:</th>
+				
             </tr>
             <?php
               
@@ -139,7 +168,8 @@
                   while ($row=mysql_fetch_array($result)){
                     
                       echo "<tr>";
-                      echo "<td style='background-color:#bf00ff'>" . $row['candidate_name']."</td>";
+                      echo "<td style='background-color:#bf00ff'>" . $row['candidate_name']. "</td>";
+					   echo "<td style='background-color:#bf00ff'>" . $row['state']. "</td>";
                       echo "<td style='background-color:#bf000f'><input type='radio' name='vote' value='$row[candidate_name]' onclick='getVote(this.value)' /></td>";
                       echo "</tr>";
                   }
@@ -188,7 +218,7 @@
       <h6 class="title">Phone</h6>
       <ul class="nospace linklist contact">
        
-        <li><i class="fa fa-phone"></i> +91 (022)25973737<br>
+        <li><i class="fa fa-phone"></i>  (022)25973737<br>
           </li>
 
 

@@ -95,7 +95,7 @@
       <h6 class="title">Phone</h6>
       <ul class="nospace linklist contact">
        
-        <li><i class="fa fa-phone"></i> +91 (022)25973737<br>
+        <li><i class="fa fa-phone"></i> 022 25973737<br>
           </li>
 
 

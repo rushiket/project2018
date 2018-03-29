@@ -13,6 +13,13 @@
 
 <?php
     $positions_retrieved=mysql_query("SELECT * FROM tbPositions")
+	
+    or die("There are no records to display ... \n" . mysql_error()); 
+?>
+
+<?php
+   
+	$candidate_region=mysql_query("SELECT * FROM location")
     or die("There are no records to display ... \n" . mysql_error()); 
 ?>
 
@@ -21,9 +28,10 @@ if (isset($_POST['Submit']))
 {
 
    
-    
-
-    $sql = mysql_query( "INSERT INTO tbCandidates(candidate_name,candidate_position) VALUES ('$newCandidateName','$newCandidatePosition')" )
+    $newCandidateName =$_POST['name'];
+	$newCandidatePosition =$_POST['position'];
+	$newCandidateRegion =$_POST['region'];
+    $sql = mysql_query( "INSERT INTO tbCandidates(candidate_name,candidate_position,candidate_region) VALUES ('$newCandidateName','$newCandidatePosition','$newCandidateRegion')" )
             or die("Could not insert candidate at the moment". mysql_error() );
 
     // redirect back to candidates
@@ -106,11 +114,12 @@ if (isset($_POST['Submit']))
             <li><a href="manage-admins.php">Manage Admin</a></li>
             <li><a href="positions.php">Manage Positions</a></li>
             <li><a href="candidates.php">Manage Candidates</a></li>
+			<li><a href="vote.php">Vote</a></li>
             <li><a href="refresh.php">Results</a></li>
           </ul>
         </li>
         
-        <li><a href="http://localhost/online_voting/index.php">Voter Panel</a></li>
+        <li><a href="http://localhost/project/index.php">Voter Panel</a></li>
         <li><a href="logout.php">Logout</a></li>
 
       </ul>
@@ -135,13 +144,31 @@ if (isset($_POST['Submit']))
     <OPTION VALUE="select">select
     <?php
         //loop through all table rows
-        while ($row=mysql_fetch_array($positions_retrieved)){
-          echo "<OPTION VALUE=$row[position_name]>$row[position_name]";
+          while ($row=mysql_fetch_array($positions_retrieved)){
+         
+		    echo "<OPTION VALUE=$row[position_name]>$row[position_name]";
         }
     ?>
     </SELECT>
     </td>
 </tr>
+
+<tr>
+    <td bgcolor="#7FFFD4">Candidate Region</td>
+    
+    <td bgcolor="#7FFFD4"><SELECT NAME="region" id="region">select
+    <OPTION VALUE="select">select
+    <?php
+        //loop through all table rows
+      
+			 while ($row=mysql_fetch_array($candidate_region)){
+           echo "<OPTION VALUE=$row[state]>$row[state]";
+        }
+    ?>
+    </SELECT>
+    </td>
+</tr>
+
 <tr>
     <td bgcolor="#BDB76B">&nbsp;</td>
     <td bgcolor="#BDB76B"><input type="submit" name="Submit" value="Add" /></td>
@@ -154,6 +181,7 @@ if (isset($_POST['Submit']))
 <th>Candidate ID</th>
 <th>Candidate Name</th>
 <th>Candidate Position</th>
+<th>candidate Region</th>
 </tr>
 
 <?php
@@ -163,6 +191,7 @@ if (isset($_POST['Submit']))
     echo "<td>" . $row['candidate_id']."</td>";
     echo "<td>" . $row['candidate_name']."</td>";
     echo "<td>" . $row['candidate_position']."</td>";
+	echo "<td>" . $row['candidate_region']."</td>";
     echo '<td><a href="candidates.php?id=' . $row['candidate_id'] . '">Delete Candidate</a></td>';
     echo "</tr>";
     }

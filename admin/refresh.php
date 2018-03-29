@@ -3,7 +3,7 @@ require('../connection.php');
 // retrieving candidate(s) results based on position
 if (isset($_POST['Submit'])){   
 
-  $position = addslashes( $_POST['position'] );
+  $position = $_POST['position'];
   
     $results = mysql_query("SELECT * FROM tbCandidates where candidate_position='$position'");
 
@@ -92,6 +92,7 @@ if(empty($_SESSION['admin_id'])){
             <li><a href="manage-admins.php">Manage Admin</a></li>
             <li><a href="positions.php">Manage Positions</a></li>
             <li><a href="candidates.php">Manage Candidates</a></li>
+			<li><a href="vote.php">Vote</a></li>
             <li><a href="refresh.php">Results</a></li>
           </ul>
         </li>
@@ -130,8 +131,7 @@ if(empty($_SESSION['admin_id'])){
     </form> 
     </table>
     <?php if(isset($_POST['Submit'])){echo $candidate_name_1;} ?>:<br>
-    <img src="images/candidate-1.gif"
-    width='<?php if(isset($_POST['Submit'])){ if ($candidate_2 || $candidate_1 != 0){echo(100*round($candidate_1/($candidate_2+$candidate_1),2));}} ?>'
+    <img src="images/candidate-1.gif"width='<?php if(isset($_POST['Submit'])){ if ($candidate_2 || $candidate_1 != 0){echo(100*round($candidate_1/($candidate_2+$candidate_1),2));}} ?>'
     height='10'>
     <?php if(isset($_POST['Submit'])){ if ($candidate_2 || $candidate_1 != 0){echo(100*round($candidate_1/($candidate_2+$candidate_1),2));}} ?>% of <?php if(isset($_POST['Submit'])){echo $totalvotes;} ?> total votes
     <br>votes <?php if(isset($_POST['Submit'])){ echo $candidate_1;} ?>
@@ -159,7 +159,7 @@ if(empty($_SESSION['admin_id'])){
           <address>
          
           <p>
-          Name        :Rushiket More <br>
+          Name        :A P SHAH INSTITUTE OF TECHNOLOGY <br>
           University  : Mumbai University <br>
           Batch       : 2018 <br>
           Dept        : Computer  <br>
@@ -178,14 +178,7 @@ if(empty($_SESSION['admin_id'])){
 
 
 
-<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
-<!-- JAVASCRIPTS -->
-<script src="layout/scripts/jquery.min.js"></script>
-<script src="layout/scripts/jquery.backtotop.js"></script>
-<script src="layout/scripts/jquery.mobilemenu.js"></script>
-<!-- IE9 Placeholder Support -->
-<script src="layout/scripts/jquery.placeholder.min.js"></script>
-<!-- / IE9 Placeholder Support -->
+
 </body>
 </html>
 

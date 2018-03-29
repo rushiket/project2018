@@ -21,21 +21,28 @@
          $lastName = $row['last_name'];
          $email = $row['email'];
          $voter_id = $row['voter_id'];
+		 $state = $row['state'];
+		 $district = $row['district'];
+		 $city =$row['city'];
+		 
      }
 ?>
 
 <?php
     // updating sql query
     if (isset($_POST['update'])){
-        $myId = addslashes( $_GET[id]);
+        $myId =  $_GET[id];
 
         $myEmail = $_POST['email'];
         $myPassword = $_POST['password'];
         $myVoterid = $_POST['voter_id'];
+		$myState = $_POST['state'];
+		$myDistrict =$_POST['district'];
+		$myCity =$_POST['city'];
 
         $newpass = md5($myPassword); //This will make your password encrypted into md5, a high security hash
 
-        $sql = mysql_query( "UPDATE tbMembers SET first_name='$myFirstName', last_name='$myLastName', email='$myEmail', voter_id = '$myVoterid', password='$newpass' WHERE member_id = '$myId'" )
+        $sql = mysql_query( "UPDATE tbMembers SET first_name='$myFirstName', last_name='$myLastName', email='$myEmail', voter_id = '$myVoterid', password='$newpass',state ='$myState',district='$myDistrict', city = '$myCity' WHERE member_id = '$myId'" )
                 or die( mysql_error() );
 
         // redirect back to profile
@@ -138,6 +145,18 @@
                 <td style="color:#000000"; >Password:</td>
                 <td style="color:#000000"; >Encrypted</td>
             </tr>
+			 <tr>
+                <td style="color:#000000"; >State:</td>
+                <td style="color:#000000"; ><?php echo $state; ?></td>
+            </tr>
+			 <tr>
+                <td style="color:#000000"; >District:</td>
+                <td style="color:#000000"; ><?php echo $district; ?></td>
+            </tr>
+			 <tr>
+                <td style="color:#000000"; >City:</td>
+                <td style="color:#000000"; ><?php echo $city; ?></td>
+            </tr>
             </table>
             </form>
 
@@ -151,22 +170,39 @@
             <form action="manage-profile.php?id=<?php echo $_SESSION['member_id']; ?>" method="post" onsubmit="return updateProfile(this)">
             <table align="center">
             <tr><td  style="background-color:#0000ff"  >First Name:</td>
-			<td style="background-color:#0000ff"  ><input  style="color:#000000"; type="text" font-weight:bold;" name="firstname" maxlength="15" value=""></td></tr>
+			<td style="background-color:#0000ff"  >
+			<input  style="color:#000000"; type="text" font-weight:bold;" name="firstname" maxlength="15" value=""></td></tr>
 
             <tr><td style="background-color:#bf00ff">Last Name:</td><td style="background-color:#bf00ff">
 			<input style="color:#000000";  type="text" font-weight:bold;" name="lastname" maxlength="15" value=""></td></tr>
 
             <tr><td style="background-color:#0000ff" >Email Address:</td>
-			<td style="background-color:#0000ff"><input style="color:#000000";  type="text" font-weight:bold;" name="email" maxlength="100" value=""></td></tr>
+			<td style="background-color:#0000ff">
+			<input style="color:#000000";  type="text" font-weight:bold;" name="email" maxlength="100" value=""></td></tr>
 
             <tr><td style="background-color:#bf00ff" >Voter Id:</td>
-			<td style="background-color:#bf00ff"><input  style="color:#000000";  type="text"  font-weight:bold;" name="voter_id" maxlength="100" value=""></td></tr>
+			<td style="background-color:#bf00ff">
+			<input  style="color:#000000";  type="text"  font-weight:bold;" name="voter_id" maxlength="100" value=""></td></tr>
+			
+			<tr><td style="background-color:#0000ff" >State:</td>
+			<td style="background-color:#0000ff">
+			<input style="color:#000000";  type="text" font-weight:bold;" name="state" maxlength="100" value=""></td></tr>
 
+            <tr><td style="background-color:#bf00ff" >District:</td>
+			<td style="background-color:#bf00ff">
+			<input  style="color:#000000";  type="text"  font-weight:bold;" name="district" maxlength="100" value=""></td></tr>
+			
+			<tr><td style="background-color:#0000ff" >City:</td>
+			<td style="background-color:#0000ff">
+			<input style="color:#000000";  type="text" font-weight:bold;" name="city" maxlength="100" value=""></td></tr>
+			
             <tr><td style="background-color:#0000ff" >New Password:</td>
-			<td style="background-color:#0000ff" ><input  style="color:#000000";  type="password" font-weight:bold;" name="password" maxlength="15" value=""></td></tr>
+			<td style="background-color:#0000ff" >
+			<input  style="color:#000000";  type="password" font-weight:bold;" name="password" maxlength="15" value=""></td></tr>
 
             <tr><td style="background-color:#bf00ff" >Confirm New Password:</td>
-			<td style="background-color:#bf00ff" ><input   style="color:#000000";  type="password"  font-weight:bold;" name="ConfirmPassword" maxlength="15" value=""></td></tr>
+			<td style="background-color:#bf00ff" >
+			<input   style="color:#000000";  type="password"  font-weight:bold;" name="ConfirmPassword" maxlength="15" value=""></td></tr>
 
             <tr><td style="background-color:#0000ff" >&nbsp;</td></td><td style="background-color:#0000ff" >
 			<input style="color:#ff0000";  type="submit" name="update" value="Update Profile"></td></tr>

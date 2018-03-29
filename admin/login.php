@@ -45,9 +45,7 @@
         <div class="bar"></div>
       </div>
 
-      <center><tr><td colspan="2" align="center"><input type="checkbox" name="remember" value="1"> <font color="blue">Remember Me</font></td></tr></center><br>
-
-
+     
 
       <div class="button-container">
         <button name="Submit"><span>Login</span></button>

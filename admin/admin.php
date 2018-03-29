@@ -1,25 +1,5 @@
 
-<?php
-    session_start();
-    require('../connection.php');
-    $log1 = $_SESSION['log1'];
-?>
-<?php
-      if(isset($_COOKIE['$email']) && $_COOKIE['$pass']){
-            $curnam = $_SESSION['curname'];
-            $curpas = $_SESSION['curpass'];
-        }
-        else if($log1 == 11)
-        {
-            $curnam = $_SESSION['curname'];
-            $curpas = $_SESSION['curpass'];
-        }
-        else 
-        {
-           echo '<img src="e1.jpg" width="100%" height="100%"  />';  /* here goes the page when destroy the cookies */
-           exit;
-        }
-?>
+
 
 
 
@@ -72,6 +52,7 @@
             <li><a href="manage-admins.php">Manage Admin</a></li>
             <li><a href="positions.php">Manage Positions</a></li>
             <li><a href="candidates.php">Manage Candidates</a></li>
+			<li><a href="vote.php">Vote</a></li>
             <li><a href="refresh.php">Results</a></li>
           </ul>
         </li>

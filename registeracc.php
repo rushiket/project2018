@@ -73,7 +73,6 @@
 	
 		$myFirstName = $_POST['first_name'] ; 
   		$myLastName = $_POST['last_name'] ;
-
   		$myEmail = $_POST['email'];
   		$myPassword = $_POST['password'];
   		$myVoterid = $_POST['voter_id'];
@@ -103,13 +102,13 @@
 	<tr>
 	<td style="color:#000000"; width="120" >First Name</td>
 	<td style="color:#000000"; width="6">:</td>
-	<td style="color:#000000"; width="294"><input name="firstname" type="text" ></td>
+	<td style="color:#000000"; width="294"><input name="first_name" type="text" ></td>
 	</tr>
 
 	<tr>
 	<td style="color:#000000"; width="120" >Last Name</td>
 	<td style="color:#000000"; width="6">:</td>
-	<td style="color:#000000"; width="294"><input name="lastname" type="text" ></td>
+	<td style="color:#000000"; width="294"><input name="last_name" type="text" ></td>
 	</tr>
 
 	<tr>
