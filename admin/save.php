@@ -1,5 +1,5 @@
 <?php
-		require('connection.php');
+		require('../connection.php');
 		$vote = $_REQUEST['vote'];
 
 

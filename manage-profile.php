@@ -32,7 +32,8 @@
     // updating sql query
     if (isset($_POST['update'])){
         $myId =  $_GET[id];
-
+		$myFirstNmae=$_POST['first_name'];
+		$myLastName=$_POST['last_name'];
         $myEmail = $_POST['email'];
         $myPassword = $_POST['password'];
         $myVoterid = $_POST['voter_id'];
