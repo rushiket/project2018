@@ -244,48 +244,4 @@ return validationVerified;
 }
 
 
-//validate reserve form
-function reserveValidate(reserveForm){
 
-var validationVerified=true;
-var errorMessage="";
-var okayMessage="click OK to reserve this table";
-
-if (reserveForm.tNumber.selectedIndex==0)
-{
-errorMessage+="Please select a table by its number!\n";
-validationVerified=false;
-}
-if(!validationVerified)
-{
-alert(errorMessage);
-}
-if(validationVerified)
-{
-alert(okayMessage);
-}
-return validationVerified;
-}
-
-//validate position form
-function positionValidate(positionForm){
-
-var validationVerified=true;
-var errorMessage="";
-var okayMessage="click OK to see the candidates under the chosen position";
-
-if (positionForm.position.selectedIndex == 0)
-{
-errorMessage+="Position not set!\n";
-validationVerified=false;
-}
-if(!validationVerified)
-{
-alert(errorMessage);
-}
-if(validationVerified)
-{
-alert(okayMessage);
-}
-return validationVerified;
-}

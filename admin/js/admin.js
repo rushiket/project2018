@@ -1,3 +1,4 @@
+
 //function to handle login-form validation
 function loginValidate(loginForm){
 
