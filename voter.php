@@ -3,7 +3,7 @@
 
 	session_start();
 	//If your session isn't valid, it returns you to the login screen for protection
-	if(empty($_SESSION['admin_id'])){
+	if(empty($_SESSION['member_id'])){
 	 	header("location:access-denied.php");
 	}
 ?>

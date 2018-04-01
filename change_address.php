@@ -22,13 +22,14 @@
 ?>
 
 <?php
-if(isset($_POST['update']))
+if (isset($_GET['id']) && isset($_POST['update']))
 {
 	$stdID=$_GET['id'];
 	$State=$_POST['state'];
 	
-	$sql=mysql_query("UPDATE tbMembers SET state='$State' where member_id='$stdID")
-	or die( mysql_error()) ;
+	$sql=mysql_query("UPDATE tbMembers SET state='$state' where member_id='$stdID'")
+	or die("An Address has been updated." . mysql_error()) ;
+	
 	header("Location : change_address.php");
 	
 }
@@ -132,11 +133,11 @@ if(isset($_POST['update']))
 			
 			<tr><td style="background-color:#0000ff" >State:</td>
 			<td style="background-color:#0000ff">
-			<input style="color:#000000";  type="text" font-weight:bold;" name="State" maxlength="100" value=""></td></tr>
+			<input style="color:#000000";  type="text" font-weight:bold;" name="state" maxlength="100" value=""></td></tr>
 
 
             <tr><td style="background-color:#0000ff" >&nbsp;</td></td><td style="background-color:#0000ff" >
-			<input style="color:#ff0000";  type="submit" name="update" value="Update Profile"></td></tr>
+			<input style="color:#ff0000";  type="submit" name="update" value="Update Address"></td></tr>
 
             </table>
             </form>

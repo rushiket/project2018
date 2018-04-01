@@ -32,7 +32,7 @@
     // updating sql query
     if (isset($_POST['update'])){
         $myId =  $_GET[id];
-		$myFirstNmae=$_POST['first_name'];
+		$myFirstName=$_POST['first_name'];
 		$myLastName=$_POST['last_name'];
         $myEmail = $_POST['email'];
         $myPassword = $_POST['password'];
@@ -172,10 +172,10 @@
             <table align="center">
             <tr><td  style="background-color:#0000ff"  >First Name:</td>
 			<td style="background-color:#0000ff"  >
-			<input  style="color:#000000"; type="text" font-weight:bold;" name="firstname" maxlength="15" value=""></td></tr>
+			<input  style="color:#000000"; type="text" font-weight:bold;" name="first_name" maxlength="15" value=""></td></tr>
 
             <tr><td style="background-color:#bf00ff">Last Name:</td><td style="background-color:#bf00ff">
-			<input style="color:#000000";  type="text" font-weight:bold;" name="lastname" maxlength="15" value=""></td></tr>
+			<input style="color:#000000";  type="text" font-weight:bold;" name="last_name" maxlength="15" value=""></td></tr>
 
             <tr><td style="background-color:#0000ff" >Email Address:</td>
 			<td style="background-color:#0000ff">

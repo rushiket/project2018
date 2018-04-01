@@ -122,19 +122,7 @@
             <div >
             <table bgcolor="#00FF00" width="420" align="center">
             <form name="fmNames" id="fmNames" method="post" action="vote.php" onSubmit="return positionValidate(this)">
-            <tr>
-                <td bgcolor="#5D7B9D" >Choose Position</td>
-                <td bgcolor="#5D7B9D" style="color:#000000"; ><SELECT NAME="position" id="position" onclick="getPosition(this.value)">
-               
-                <?php 
-                  //loop through all table rows
-                  while ($row=mysql_fetch_array($positions)){
-                    echo "<OPTION VALUE=$row[position_name]>$row[position_name]"; 
-                  }
-                ?>
-               </td>
-                
-            </tr>
+           
 			
 			  <tr>
                 <td bgcolor="#5D7B9D" >Choose State</td>
@@ -147,7 +135,22 @@
                   }
                 ?>
                 </SELECT></td>
-                <td bgcolor="#5D7B9D" ><input style="color:#ff0000";  type="submit" name="Submit" value="See Candidates" /></td>
+                <td bgcolor="#5D7B9D" ></td>
+            </tr>
+			
+			 <tr>
+                <td bgcolor="#5D7B9D" >Choose Position</td>
+                <td bgcolor="#5D7B9D" style="color:#000000"; ><SELECT NAME="position" id="position" onclick="getPosition(this.value)">
+               <OPTION  VALUE="select">select
+                <?php 
+                  //loop through all table rows
+                  while ($row=mysql_fetch_array($positions)){
+                    echo "<OPTION VALUE=$row[position_name]>$row[position_name]"; 
+                  }
+                ?>
+				 <td bgcolor="#5D7B9D" ><input style="color:#ff0000";  type="submit" name="Submit" value="See Candidates" /></td>
+               </td>
+                
             </tr>
 			
             <tr>
@@ -169,7 +172,7 @@
                     
                       echo "<tr>";
                       echo "<td style='background-color:#bf00ff'>" . $row['candidate_name']. "</td>";
-					   echo "<td style='background-color:#bf00ff'>" . $row['state']. "</td>";
+					//   echo "<td style='background-color:#bf00ff'>" . $row['state']. "</td>";
                       echo "<td style='background-color:#bf000f'><input type='radio' name='vote' value='$row[candidate_name]' onclick='getVote(this.value)' /></td>";
                       echo "</tr>";
                   }

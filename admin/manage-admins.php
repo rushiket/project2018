@@ -100,7 +100,8 @@
 				if (isset($_POST['submit']))
 				{
 
-					
+					$myFirstName =$_POST['first_name'];
+					$myLastName =$_POST['last_name'];
 					$myEmail = $_POST['email'];
 					$myPassword = $_POST['password'];
 
@@ -114,7 +115,7 @@
 				//Process
 				if (isset($_GET['id']) && isset($_POST['update']))
 				{
-					$myId = addslashes( $_GET['id']);
+					$myId = $_GET['id'];
 					$myFirstName =$_POST['first_name'];
 					$myLastName =$_POST['last_name'];
 					$myEmail = $_POST['email'];
