@@ -48,7 +48,7 @@
       <ul class="clear">
         <li class="active"><a href="index.php">Home</a></li>
         
-        <li><a href="logout.php">Logout</a></li>
+       
       </ul>
     </nav>
   </header>

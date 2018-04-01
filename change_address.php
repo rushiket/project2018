@@ -27,7 +27,7 @@ if (isset($_GET['id']) && isset($_POST['update']))
 	$stdID=$_GET['id'];
 	$State=$_POST['state'];
 	
-	$sql=mysql_query("UPDATE tbMembers SET state='$state' where member_id='$stdID'")
+	$sql=mysql_query("UPDATE tbMembers SET state='$State' where member_id='$stdID'")
 	or die("An Address has been updated." . mysql_error()) ;
 	
 	header("Location : change_address.php");

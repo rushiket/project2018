@@ -102,6 +102,13 @@
     <nav id="mainav" class="fl_right">
       <ul class="clear">
         <li class="active"><a href="voter.php">Home</a></li>
+        <li><a class="drop" href="#">Voter Pages</a>
+          <ul>
+            
+            <li><a href="manage-profile.php">Manage my profile</a></li>
+			<li><a href="change_address.php">Change Address</a></li>
+          </ul>
+        </li>
         
         <li><a href="logout.php">Logout</a></li>
       </ul>
