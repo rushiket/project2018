@@ -44,6 +44,7 @@
           <ul>
             <li><a href="admin/index.php">Admin</a></li>
             <li><a href="login.php">Voter</a></li>
+			
             
           </ul>
         </li>
@@ -54,7 +55,7 @@
             
           </ul>
         </li>
-       
+       <li><a href="voting_page.php">Vote</a></li>
       </ul>
     </nav>
   </header>

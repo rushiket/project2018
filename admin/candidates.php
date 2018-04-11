@@ -67,7 +67,7 @@ if (isset($_POST['Submit']))
 
 <html>
 <head>
-<title>online voting</title>
+<title>Indian voting</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -108,7 +108,7 @@ if (isset($_POST['Submit']))
     
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="candidates.php">Home</a></li>
+        <li class="active"><a href="login.php">Home</a></li>
         <li><a class="drop" href="#">Admin Panel Pages</a>
           <ul>
             <li><a href="manage-admins.php">Manage Admin</a></li>

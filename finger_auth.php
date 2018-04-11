@@ -1,39 +1,36 @@
 <?php
-	require('connection.php');
+    session_start();
+    require('connection.php');
 
-	session_start();
-	//If your session isn't valid
-	if(empty($_SESSION['member_id'])){
-	 	header("location:access-denied.php");
-	}
-	$result=mysql_query("Select * from tbMembers where member_id = '$_SESSION[member_id]'")
-	or die("there are no record to display.....\n".mysql_error());
-	if(mysql_num_rows($result)<1)
-	{
-		$result=null;
-	}
-	
-	$row =mysql_fetch_array($result);
-	if($row)
-	{
-		$stdID=$row['member_id'];
-		$State=$row['state'];
-	}
+    //If your session isn't valid, it returns you to the login screen for protection
+   if(empty($_SESSION['member_id'])){
+      header("location:access-denied.php");
+    } 
+    //retrive voter details from the tbmembers table
+    $result=mysql_query("SELECT * FROM tbMembers WHERE member_id = '$_SESSION[member_id]'")
+    or die("There are no records to display ... \n" . mysql_error()); 
+    if (mysql_num_rows($result)<1){
+        $result = null;
+    }
+    $row = mysql_fetch_array($result);
+    if($row)
+     {
+         // get data from db
+         $stdId = $row['member_id'];
+         $firstName = $row['first_name'];
+         $lastName = $row['last_name'];
+         $email = $row['email'];
+         $voter_id = $row['voter_id'];
+		 $state = $row['state'];
+		 $district = $row['district'];
+		 $city =$row['city'];
+		 
+     }
 ?>
 
-<?php
-if (isset($_GET['id']) && isset($_POST['update']))
-{
-	$stdID=$_GET['id'];
-	$State=$_POST['state'];
-	
-	$sql=mysql_query("UPDATE tbMembers SET state='$State' where member_id='$stdID'")
-	or die("An Address has been updated." . mysql_error()) ;
-	
-	header("Location : change_address.php");
-	
-}
-?>
+
+
+
 <!DOCTYPE html>
 
 <html>
@@ -65,8 +62,8 @@ if (isset($_GET['id']) && isset($_POST['update']))
     </div>
     <div class="fl_right">
       <ul class="nospace inline pushright">
-        <li><i class="fa fa-phone"></i> +91 (022)25973737</li>
-        <li><i class="fa fa-envelope-o"></i> principal@apsit.org.in </li>
+        <li><i class="fa fa-phone"></i> +91 7208119935</li>
+        <li><i class="fa fa-envelope-o"></i> mrushiket@gmail.com </li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -82,78 +79,76 @@ if (isset($_GET['id']) && isset($_POST['update']))
     <nav id="mainav" class="fl_right">
       <ul class="clear">
         <li class="active"><a href="voter.php">Home</a></li>
-        <li><a class="drop" href="#">Voter Pages</a>
-          <ul>
-            
-            <li><a href="manage-profile.php">Manage my profile</a></li>
-			<li><a href="vote.php">Change Address</a></li>
-          </ul>
-        </li>
         
-        <li><a href="logout.php">Logout</a></li>
+        
+       
       </ul>
     </nav>
     <!-- ################################################################################################ -->
   </header>
 </div>
 
-
-
-  
 <div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/background.jpg');">
   <section id="testimonials" class="hoc container clear"> 
-    <!-- ################################################################################################ -->
     
     <ul class="nospace group">
       <li class="one_half first">
         <blockquote>
             <table border="0" width="620" align="center">
-            <CAPTION><h3>DEFAULT ADDRESS</h3></CAPTION>
+            <CAPTION><h3>VOTER PROFILE</h3></CAPTION>
             <form>
             <br>
             <tr><td></td><td></td></tr>
-  
+            <tr>
+                <td style="color:#000000"; >Id:</td>
+                <td style="color:#000000"; ><?php echo $stdId; ?></td>
+            </tr>
+            <tr>
+                <td style="color:#000000"; >First Name:</td>
+                <td style="color:#000000"; ><?php echo $firstName; ?></td>
+            </tr>
+            <tr>
+                <td style="color:#000000"; >Last Name:</td>
+                <td style="color:#000000"; ><?php echo $lastName; ?></td>
+            </tr>
+            <tr>
+                <td style="color:#000000"; >Email:</td>
+                <td style="color:#000000"; ><?php echo $email; ?></td>
+            </tr>
+            <tr>
+                <td style="color:#000000"; >Voter Id:</td>
+                <td style="color:#000000"; ><?php echo $voter_id; ?></td>
+            </tr>
+        
 			 <tr>
                 <td style="color:#000000"; >State:</td>
-                <td style="color:#000000"; ><?php echo $State; ?></td>
+                <td style="color:#000000"; ><?php echo $state; ?></td>
             </tr>
-		
+			 <tr>
+                <td style="color:#000000"; >District:</td>
+                <td style="color:#000000"; ><?php echo $district; ?></td>
+            </tr>
+			 <tr>
+                <td style="color:#000000"; >City:</td>
+                <td style="color:#000000"; ><?php echo $city; ?></td>
+            </tr>
             </table>
             </form>
 
         </blockquote>
       
       </li>
-      <li class="one_half">
+	  
+	   <li class="one_half">
         <blockquote>
             <table  border="0" width="620" align="center">
-            <CAPTION><h3>CURRENT ADDRESS</h3></CAPTION>
-            <form action="change_address.php?id=<?php echo $_SESSION['member_id']; ?>" method="post" ">
-            <table align="center">
-			
-			<tr><td style="background-color:#0000ff" >State:</td>
-			<td style="background-color:#0000ff">
-			<input style="color:#000000";  type="text" font-weight:bold;" name="state" maxlength="100" value=""></td></tr>
-
-
-            <tr><td style="background-color:#0000ff" >&nbsp;</td></td><td style="background-color:#0000ff" >
-			<input style="color:#ff0000";  type="submit" name="update" value="Update Address"></td></tr>
-
-            </table>
-            </form>
-            </table>
-
-
-
-        </blockquote>
-      
-      </li>
-
+            <CAPTION><h3>Place your thumb on scanner to Authenticate</h3></CAPTION>
+      </blockquote>
+</table>
     </ul>
     <!-- ################################################################################################ -->
   </section>
 </div>
-
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
     <!-- ################################################################################################ -->
@@ -164,7 +159,7 @@ if (isset($_GET['id']) && isset($_POST['update']))
           <address>
          
           <p>
-          Name        : A P SHAH INSTITUTE OF TECHNOLOGY <br>
+          Name        : A P SHAH INSTITUTE OF TECHNOLOGY<br>
           University  : Mumbai <br>
           Batch       : 2017-18 <br>
           Dept        : Computer Engineering <br>
@@ -178,7 +173,7 @@ if (isset($_GET['id']) && isset($_POST['update']))
       <h6 class="title">Phone</h6>
       <ul class="nospace linklist contact">
        
-        <li><i class="fa fa-phone"></i> (022)25973737<br>
+        <li><i class="fa fa-phone"></i> +91 (022)25973737<br>
           </li>
 
 
@@ -194,11 +189,8 @@ if (isset($_GET['id']) && isset($_POST['update']))
       </ul>
     </div>
 
-
-    <!-- ################################################################################################ -->
   </footer>
 </div>
-
 </body>
 </html>
 
