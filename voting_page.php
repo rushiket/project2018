@@ -10,12 +10,12 @@
 			require('connection.php');
 
 			// Defining your login details into variables
-			$myID=$_POST['member_id'];
+			$myID=$_POST['voter_id'];
 		
 
 			
 
-			$sql="SELECT * FROM tbmembers WHERE member_id='$myID'" or die(mysql_error());
+			$sql="SELECT * FROM tbmembers WHERE voter_id='$myID'" or die(mysql_error());
 			$result=mysql_query($sql) or die(mysql_error());
 
 			// Checking table row
@@ -24,7 +24,7 @@
 			if($count==1){
 				// If everything checks out, you will now be forwarded to voter.php
 				$user = mysql_fetch_assoc($result);
-				$_SESSION['member_id'] = $user['member_id'];
+				$_SESSION['voter_id'] = $user['voter_id'];
 				header("location:finger_auth.php");
 			}
 			//If the username or password is wrong, you will receive this message below.
@@ -107,12 +107,12 @@
         <blockquote>
             <table  border="0" width="620" align="center">
             <CAPTION><h3>Aadhar Number</h3></CAPTION>
-            <form action="voting_page.php?id=<?php echo $_SESSION['member_id']; ?>" method="post" ">
+            <form action="voting_page.php?id=<?php echo $_SESSION['voter_id']; ?>" method="post" ">
             <table align="center">
 			
 			<tr><td style="background-color:#0000ff" >Aadhar Number:</td>
 			<td style="background-color:#0000ff">
-			<input style="color:#000000";  type="text" font-weight:bold;" name="member_id" maxlength="100" value=""></td></tr>
+			<input style="color:#000000";  type="text" font-weight:bold;" name="voter_id" maxlength="100" value=""></td></tr>
 
 
             <tr><td style="background-color:#0000ff" >&nbsp;</td></td><td style="background-color:#0000ff" >

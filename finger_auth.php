@@ -3,11 +3,11 @@
     require('connection.php');
 
     //If your session isn't valid, it returns you to the login screen for protection
-   if(empty($_SESSION['member_id'])){
+   if(empty($_SESSION['voter_id'])){
       header("location:access-denied.php");
     } 
     //retrive voter details from the tbmembers table
-    $result=mysql_query("SELECT * FROM tbMembers WHERE member_id = '$_SESSION[member_id]'")
+    $result=mysql_query("SELECT * FROM tbMembers WHERE voter_id = '$_SESSION[voter_id]'")
     or die("There are no records to display ... \n" . mysql_error()); 
     if (mysql_num_rows($result)<1){
         $result = null;
