@@ -1,4 +1,29 @@
+  <?php
+  	require('connection.php');
+  	//Process
+  	if (isset($_POST['submit']))
+  	{
+	
+		$myFirstName = $_POST['first_name'] ; 
+  		$myLastName = $_POST['last_name'] ;
+  		$myEmail = $_POST['email'];
+  		$myPassword = $_POST['password'];
+  		$myVoterid = $_POST['voter_id'];
+		$myState = $_POST['state'];
+		
+		$myDistrict = $_POST['district'];
+		$myCity = $_POST['city'];
 
+  		$newpass = md5($myPassword); //This will make your password encrypted into md5
+	$query="INSERT INTO tbMembers( `first_name`, `last_name`, `email`, `voter_id`, `state`, `district`, `city`, `password`) 
+		VALUES ('".$myFirstName."','".$myLastName."', '".$myEmail."','".$myVoterid."','".$myState."','".$myDistrict."','".$myCity."' ,'".$newpass."')";
+  		$sql = mysql_query( $query )
+  		        or die( mysql_error() );
+
+  	die( "You have registered for an account.<br><br>Go to <a href=\"login.php\">Login</a>" );
+  	}
+	
+?>
 <!DOCTYPE html>
 
 <html>
@@ -9,8 +34,7 @@
 
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <!-- <link href="css/user_styles.css" rel="stylesheet" type="text/css" /> -->
-<script language="JavaScript" src="js/user.js">
-</script>
+<script language="JavaScript" src="js/user.js"></script>
 
 </head>
 <body id="top">
@@ -65,31 +89,7 @@
 
 
 <div  >
-  <?php
-  	require('connection.php');
-  	//Process
-  	if (isset($_POST['submit']))
-  	{
-	
-		$myFirstName = $_POST['first_name'] ; 
-  		$myLastName = $_POST['last_name'] ;
-  		$myEmail = $_POST['email'];
-  		$myPassword = $_POST['password'];
-  		$myVoterid = $_POST['voter_id'];
-		$myState = $_POST['state'];
-		
-		$myDistrict = $_POST['district'];
-		$myCity = $_POST['city'];
 
-  		$newpass = md5($myPassword); //This will make your password encrypted into md5
-	$query="INSERT INTO tbMembers( `first_name`, `last_name`, `email`, `voter_id`, `state`, `district`, `city`, `password`) 
-		VALUES ('".$myFirstName."','".$myLastName."', '".$myEmail."','".$myVoterid."','".$myState."','".$myDistrict."','".$myCity."' ,'".$newpass."')";
-  		$sql = mysql_query( $query )
-  		        or die( mysql_error() );
-
-  	die( "You have registered for an account.<br><br>Go to <a href=\"login.php\">Login</a>" );
-  	}
-?>
   	<center><h3>Register an account by filling in the needed information below:</h3></center>
   	
   

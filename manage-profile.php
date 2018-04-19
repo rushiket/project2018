@@ -64,7 +64,7 @@
 
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <!-- <link href="css/user_styles.css" rel="stylesheet" type="text/css" /> -->
-<script language="JavaScript" src="js/user.js">
+<script language="JavaScript" src="js/updateprofile.js">
 </script>
 
 </head>

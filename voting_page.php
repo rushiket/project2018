@@ -1,4 +1,3 @@
-
 <?php
 			ini_set ("display_errors", "1");
 			//throw new \Exception( 'Unable to set display_errors.' );    
@@ -22,15 +21,12 @@
 			$count=mysql_num_rows($result);
 			
 			if($count==1){
-				// If everything checks out, you will now be forwarded to voter.php
+				// If everything checks out, you will now be forwarded to finger_auth.php
 				$user = mysql_fetch_assoc($result);
 				$_SESSION['voter_id'] = $user['voter_id'];
 				header("location:finger_auth.php");
 			}
-			//If the username or password is wrong, you will receive this message below.
-			else {
-				echo "Enter valid Aadhar number<br><br>Return to <a href=\"voting_page.php\">try again</a>";
-			}
+			
 
 			ob_end_flush();
 
@@ -83,7 +79,7 @@
     <!-- ################################################################################################ -->
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="voter.php">Home</a></li>
+        <li class="active"><a href="index.php">Home</a></li>
        
       </ul>
     </nav>

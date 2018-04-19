@@ -1,11 +1,11 @@
 <?php
-  require('../connection.php');
+  require('connection.php');
 
   session_start();
   
-  if(empty($_SESSION['admin_id'])){
-      header("location:access-denied.php");
-    } 
+  //if(empty($_SESSION['voter_id'])){
+  //    header("location:access-denied.php");
+  //  } 
 ?>
 <?php
     
@@ -51,9 +51,7 @@
 <script type="text/javascript">
 
 </script>
-<script type="text/javascript">
 
-</script>
 
 
 </head>
@@ -85,31 +83,35 @@
   <header id="header" class="hoc clear"> 
     
     <div id="logo" class="fl_left">
-      <h1><a href="index.html">ONLINE VOTING</a></h1>
+      <h1><a href="index.php">ONLINE VOTING</a></h1>
     </div>
-    
-    <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <li class="active"><a href="candidates.php">Home</a></li>
-        <li><a class="drop" href="#">Admin Panel Pages</a>
-          <ul>
-            <li><a href="manage-admins.php">Manage Admin</a></li>
-            <li><a href="positions.php">Manage Positions</a></li>
-            <li><a href="candidates.php">Manage Candidates</a></li>
-			<li><a href="vote.php">Vote</a></li>
-            <li><a href="refresh.php">Results</a></li>
-          </ul>
-        </li>
-        
-        <li><a href="http://localhost/project/index.php">Voter Panel</a></li>
-        <li><a href="logout.php">Logout</a></li>
-
-      </ul>
-    </nav>
-    
-  </header>
+ </header>
 </div>
+<!--<h3> Make your Vote in  <span id="countdowntimer">10 </span> Seconds</h3>
 
+<script type="text/javascript">
+    var timeleft = 10;
+    var downloadTimer = setInterval(function(){
+    timeleft--;
+    document.getElementById("countdowntimer").textContent = timeleft;
+    if(timeleft <= 0)
+        clearInterval(downloadTimer);
+    },10000);
+</script>
+
+-->
+<script type="text/javascript">   
+function Redirect() 
+{  
+window.location.href="voting_page.php"; 
+}
+var display  = document.write("You will be redirected to a new page in 1 minute"); 
+ console.log(display);
+
+   display.style.fontSize = "100px";
+   display.innerHTML = "String";
+setTimeout('Redirect()', 6000);   
+</script>
 <div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/background.jpg');">
   <section id="testimonials" class="hoc container clear"> 
     <!-- ################################################################################################ -->
@@ -173,17 +175,21 @@
                       echo "<tr>";
                       echo "<td style='background-color:#bf00ff'>" . $row['candidate_name']. "</td>";
 					//   echo "<td style='background-color:#bf00ff'>" . $row['state']. "</td>";
-                      echo "<td style='background-color:#bf000f'><input type='radio' name='vote' value='$row[candidate_name]' onclick='getVote(this.value)' /></td>";
+                      echo "<td style='background-color:#bf000f'><input type='radio' name='vote' value='$row[candidate_name]'   onclick='getVote(this.value)' /></td>";
                       echo "</tr>";
                   }
                   mysql_free_result($result);
-                  mysql_close($link);
+                //  mysql_close($link);
               //}
                 }
                 else
               // do nothing
             ?>
-
+	<!--<script type="text/javascript">
+alert("review your answer");
+window.location.href = "voter_page.php";
+</script>
+-->
             <tr>
                 <h4>Click a circle under a respective candidate to cast your vote. You can't vote more than once in a respective position. This process can not be undone so think wisely before casting your vote.</h4>
                 

@@ -53,7 +53,7 @@
    
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="manage-admins.php">Home</a></li>
+        <li class="active"><a href="admin.php">Home</a></li>
         <li><a class="drop" href="#">Admin Panel Pages</a>
           <ul>
             <li><a href="manage-admins.php">Manage Admin</a></li>
@@ -65,7 +65,8 @@
           </ul>
         </li>
         
-        <li><a href="http://localhost/online_voting/index.php">Voter Panel</a></li>
+        <li><a href="http://localhost/project/index.php">Voter Panel</a></li>
+			<li><a href="fingerprint_capture.php">Upload FingerPrint</a></li>
         <li><a href="logout.php">Logout</a></li>
 
       </ul>

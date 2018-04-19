@@ -57,7 +57,8 @@
           </ul>
         </li>
         
-        <li><a href="http://localhost/online_voting/index.php">Voter Panel</a></li>
+        <li><a href="http://localhost/project/index.php">Voter Panel</a></li>
+		<li><a href="fingerprint_capture.php">Upload FingerPrint</a></li>
         <li><a href="logout.php">Logout</a></li>
 
       </ul>

@@ -44,8 +44,7 @@ if (isset($_GET['id']) && isset($_POST['update']))
 
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <!-- <link href="css/user_styles.css" rel="stylesheet" type="text/css" /> -->
-<script language="JavaScript" src="js/user.js">
-</script>
+<script language="JavaScript" src="js/change_state.js"></script>
 
 </head>
 <body id="top">
@@ -128,7 +127,7 @@ if (isset($_GET['id']) && isset($_POST['update']))
         <blockquote>
             <table  border="0" width="620" align="center">
             <CAPTION><h3>CURRENT ADDRESS</h3></CAPTION>
-            <form action="change_address.php?id=<?php echo $_SESSION['member_id']; ?>" method="post" ">
+            <form action="change_address.php?id=<?php echo $_SESSION['member_id']; ?>" method="post"  onsubmit="return updateState(this)">
             <table align="center">
 			
 			<tr><td style="background-color:#0000ff" >State:</td>

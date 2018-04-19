@@ -56,9 +56,9 @@
 
 	<nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="access-denied.php">Home</a></li>
+        <li class="active"><a href="index.php">Home</a></li>
         
-        <li><a class="drop" href="#">Voter Panel</a>
+        <li><a class="drop" href="index.php">Voter Panel</a>
           <ul>
             <li><a href="login.php">Login</a></li>
             <li><a href="registeracc.php">Registration</a></li>

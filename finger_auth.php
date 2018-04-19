@@ -1,3 +1,11 @@
+<script>
+history.pushState(null, document.title, location.href);
+window.addEventListener('popstate', function (event)
+{
+  history.pushState(null, document.title, location.href);
+});
+</script>
+
 <?php
     session_start();
     require('connection.php');
@@ -26,8 +34,23 @@
 		 $city =$row['city'];
 		 
      }
-?>
 
+	
+$result=mysql_query("SELECT * FROM tbfingerprint WHERE voter_id = '$_SESSION[voter_id]'")
+or die("There are no records of fingerprint to display ... \n" . mysql_error());
+
+//if (mysql_num_rows($result01)<1)
+//$result01 =null;
+
+$row =mysql_fetch_array($result);
+if($row)
+{
+	$fingerprint = $row["fingerprint"];
+	
+}
+
+	
+?>
 
 
 
@@ -41,9 +64,74 @@
 
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <!-- <link href="css/user_styles.css" rel="stylesheet" type="text/css" /> -->
-<script language="JavaScript" src="js/user.js">
+<script language="JavaScript" src="js/user.js"></script>
+<script src="js/jquery-3.3.1.js"></script>
+    
+<script src="js/mfs100-9.0.2.6.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+
+        var quality = 60; //(1 to 100) (recommanded minimum 55)
+        var timeout = 10; // seconds (minimum=10(recommanded), maximum=60, unlimited=0 )
+        var flag = 0;
+
+// Function used to match fingerprint using jason object 
+
+function Match() {
+
+            try {
+              //fingerprint stored as isotemplate
+
+                var isotemplate = <?php echo json_encode($fingerprint); ?>;
+                var res = MatchFinger(quality, timeout, isotemplate);
+
+                if (res.httpStaus) {
+                    if (res.data.Status) {
+                        alert("Finger matched");
+                        
+                        //variable flag used for authentication 
+                        
+                        flag=1;
+                    }
+                    else {
+                        if (res.data.ErrorCode != "0") {
+                            alert(res.data.ErrorDescription);
+                        }
+                        else {
+                            alert("Finger not matched");
+                        }
+                    }
+                }
+                else {
+                    alert(res.err);
+                }
+            }
+            catch (e) {
+                alert(e);
+            }
+            return false;
+
+        }
+
+//function to redirect to next page upon fingerprint matching
+
+function redirect(){
+
+    
+    if(flag>=1){ 
+    window.location.replace("vote.php"); 
+    }
+    else{
+      alert("Scan Your Finger");
+    }
+
+  return false;
+}
+
 </script>
 
+	
 </head>
 <body id="top">
 <div class="wrapper row0">
@@ -78,7 +166,7 @@
     <!-- ################################################################################################ -->
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="voter.php">Home</a></li>
+        <li class="active"><a href="index.php">Home</a></li>
         
         
        
@@ -132,19 +220,48 @@
                 <td style="color:#000000"; >City:</td>
                 <td style="color:#000000"; ><?php echo $city; ?></td>
             </tr>
+			
+		
             </table>
             </form>
 
         </blockquote>
-      
-      </li>
-	  
-	   <li class="one_half">
+		</li>
+		 <li class="one_half">
         <blockquote>
             <table  border="0" width="620" align="center">
-            <CAPTION><h3>Place your thumb on scanner to Authenticate</h3></CAPTION>
-      </blockquote>
-</table>
+            <CAPTION><h3>Fingerprint Authentication</h3></CAPTION>
+            <form action="finger_auth.php?id=<?php echo $_SESSION['voter_id']; ?>" method="post" onsubmit="">
+            <table align="center">
+				
+				
+                  
+			   <td width="150px" height="190px" align="center" class="img">
+                  <img id="imgFinger" width="145px" height="188px" class="padd_top" />
+                     </td>
+					
+					  
+					<td>
+					<li>
+                      <button type="input" onclick="return Match()" class="btn btn-default padd" >start scanning</button>
+						
+						
+                      <button type="submit" onclick="return redirect()" class="btn btn-primary btn-lg  padd submit_buttom_padding btn-block" value="submit" name="submit">Submit</button>
+                   </li>
+				   </td>
+				   
+
+            </table>
+            </form>
+            </table>
+
+
+
+        </blockquote>
+      
+      </li>
+		
+	
     </ul>
     <!-- ################################################################################################ -->
   </section>
@@ -173,7 +290,7 @@
       <h6 class="title">Phone</h6>
       <ul class="nospace linklist contact">
        
-        <li><i class="fa fa-phone"></i> +91 (022)25973737<br>
+        <li><i class="fa fa-phone"></i>  (022)25973737<br>
           </li>
 
 
